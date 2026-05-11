@@ -1,33 +1,43 @@
 
-# The CPP Grind
+# The C++ Grind
 
-The CPP Grind is a static, learning site for C++: a roadmap, chapter notes, references, and small interactive pages.
+Anyone can use this to learn how to code — not just C++. The projects, roadmap, and build challenges are language-agnostic at the concept level. Every project here works as a blueprint you can implement in any language. The C++ code is the reference; the patterns are universal.
 
-This repo is intentionally simple—plain HTML/CSS/JS—so the content is easy to edit and the site can ship on GitHub Pages with no build step.
+This repo is intentionally simple — plain HTML/CSS/JS — so the content is easy to edit and the site ships on GitHub Pages with no build step.
 
-## What’s in here
+## The two repos
 
-- **Roadmap**: a phase-based path through core C++ topics.
-- **Articles**: chapter-by-chapter notes (written as I learn, in my own words).
+| Repo | What it is |
+|------|-----------|
+| **[TheCppGrind](https://github.com/Cooper-Bugg/TheCppGrind)** | This site — HTML, CSS, JS, articles, and data. The learning journal. |
+| **[Start-Learning-Cpp](https://github.com/Cooper-Bugg/Start-Learning-Cpp)** | The project repo — all 43 C++ projects, hand-typed and documented. Use them as references when building your own version in any language. |
+
+## What's in here
+
+- **Intro**: start here — what the site is, who it's for, how to use it.
+- **Roadmap**: a phase-based path through core C++ topics, resources mapped to each phase.
+- **Articles**: chapter-by-chapter notes following Roberts' *Programming Abstractions in C++*, written as I learn.
+- **Projects**: 43 projects from CLI tools to systems programming, each tied to specific concepts.
+- **Games**: C++ Wordle and a daily code challenge.
 - **References / Resources**: quick lookup + curated links.
-- **Games**: small interactive challenges.
 
 ## Tech stack
 
 - **HTML** pages under `index.html` and `pages/`
 - **CSS** in `css/main.css` (design tokens via CSS variables)
 - **JS** in `js/main.js` (nav, theme toggle, local progress state)
+- **Icons** via Google Material Symbols Rounded (loaded from Google Fonts)
 - **Data** in `site-data.json` (resource lists, metadata)
 
 ## Theme (dark + light)
 
 The site is **dark mode by default**.
 
-There’s also a light theme that keeps the same accent palette but uses a cool off-white background (better contrast for the blues).
+There's also a light theme that keeps the same accent palette but uses a cool off-white background.
 
 - The toggle lives next to the site title in the header.
 - User preference is saved in `localStorage` under `theme` (`dark` or `light`).
-- If there’s no saved preference, it follows the OS setting (`prefers-color-scheme`).
+- If there's no saved preference, it follows the OS setting (`prefers-color-scheme`).
 
 Theme values are controlled via CSS variables in `css/main.css`:
 
@@ -43,25 +53,13 @@ Some pages use clickable progress markers (elements with the `.progress-check` c
 
 No analytics and no server-side tracking.
 
-## Contact form (GitHub Pages compatible)
-
-GitHub Pages can’t run server code, so the contact form is wired to **Formspree**.
-
-To enable it:
-
-1. Create a Formspree form and copy your endpoint URL (looks like `https://formspree.io/f/xxxxxxx`).
-2. Open `pages/contact.html` and replace the placeholder:
-	- `action="https://formspree.io/f/YOUR_FORM_ID"`
-
-The page submits via `fetch()` and shows inline success/error status.
-
 ## Project layout
 
 ```text
 .
 ├── index.html
-├── pages/              # top-level site pages
-├── articles/           # chapter notes/articles (static html)
+├── pages/              # top-level site pages (intro, roadmap, articles, …)
+├── articles/           # chapter notes (static html)
 ├── css/
 │   └── main.css
 ├── js/
@@ -71,19 +69,7 @@ The page submits via `fetch()` and shows inline success/error status.
 └── site-data.json
 ```
 
-## Local development
-
-Because it’s a static site, you can open `index.html` directly in a browser.
-
-For fewer CORS/relative-path surprises, a local static server is nicer (any server works). Example options:
-
-- Python: `python3 -m http.server`
-- Node: `npx serve`
-
-Then open the printed localhost URL.
-
 ## Notes
 
 - This site is a learning journal, not a copy of LearnCpp/Roberts/other resources.
-- If something looks wrong in light mode, it usually means a hard-coded color slipped into a page-level `<style>` block. The fix is to convert it to CSS variables.
-
+- The C++ projects live in [Start-Learning-Cpp](https://github.com/Cooper-Bugg/Start-Learning-Cpp) — check that repo for runnable code.

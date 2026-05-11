@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro — The C++ Grind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,500,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .intro-hero {
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 72px;
+    }
+    .intro-hero .section-inner { max-width: 720px; }
+    .intro-tag {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .intro-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .intro-title em { font-style: italic; color: var(--accent); }
+    .intro-sub {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.9;
+      max-width: 620px;
+      margin-bottom: 14px;
+    }
+    .intro-sub + .intro-sub { margin-bottom: 32px; }
+    .intro-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .intro-panels {
+      padding: 72px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .intro-panel {
+      background: var(--bg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background var(--transition);
+    }
+    .intro-panel:hover { background: var(--bg2); }
+    .intro-icon .material-symbols-rounded {
+      font-size: 24px;
+      line-height: 1;
+      color: var(--text);
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .intro-panel h2 { font-size: 15px; font-weight: 700; color: var(--text); }
+    .intro-panel p { font-size: 13px; color: var(--text2); line-height: 1.8; flex: 1; }
+
+    .intro-note {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+    }
+    .intro-note .about-label { margin-bottom: 12px; }
+    .intro-note p { font-size: 14px; color: var(--text2); line-height: 1.9; margin-bottom: 10px; }
+    .intro-note p:last-child { margin-bottom: 0; }
+    .intro-note a { color: var(--blue); }
+    .intro-note a:hover { text-decoration: underline; }
+
+    .intro-repos {
+      padding: 72px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .repos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .repo-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color var(--transition);
+    }
+    .repo-card:hover { border-color: var(--border2); }
+    .repo-card-head { display: flex; align-items: center; gap: 10px; }
+    .repo-card-head .material-symbols-rounded {
+      font-size: 20px;
+      color: var(--accent);
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+    }
+    .repo-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .repo-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .repo-desc { font-size: 13px; color: var(--text2); line-height: 1.8; flex: 1; }
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-top: 4px;
+    }
+    .repo-link:hover { text-decoration: underline; }
+    .repo-link .material-symbols-rounded {
+      font-size: 14px;
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+    }
+
+    /* ── Contact section ── */
+    .intro-contact {
+      padding: 72px 24px;
+    }
+    .intro-contact .section-inner { max-width: 720px; }
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-top: 32px;
+    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-grid .full { grid-column: 1 / -1; }
+    .field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .field-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .field-input:focus { border-color: var(--accent); }
+    textarea.field-input { min-height: 120px; resize: vertical; line-height: 1.7; }
+    .form-actions { display: flex; gap: 12px; align-items: center; margin-top: 14px; }
+    .btn-send {
+      appearance: none;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 10px 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition), opacity var(--transition);
+    }
+    .btn-send:hover { background: var(--accent2); border-color: var(--accent2); }
+    .btn-send[disabled] { opacity: 0.5; cursor: default; }
+    .form-status { font-size: 12px; color: var(--text2); }
+    .form-status.ok { color: var(--green); }
+    .form-status.err { color: #ff6b6b; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    @media (max-width: 900px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .repos-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .intro-hero { padding: 48px 24px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle light mode" aria-checked="false"><span class="material-symbols-rounded toggle-dark">dark_mode</span><span class="material-symbols-rounded toggle-light">light_mode</span></button>
+        <a href="intro.html" class="logo"><span class="logo-bracket">//</span> The C++ Grind</a>
+      </div>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <div class="nav-group">
+          <button>Learn</button>
+          <div class="dropdown-panel">
+            <a href="intro.html">Intro</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="articles.html">Articles</a>
+            <a href="games.html">Games</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button>Build</button>
+          <div class="dropdown-panel">
+            <a href="projects.html">Projects</a>
+            <a href="build-your-own.html">Build Your Own</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button>Explore</button>
+          <div class="dropdown-panel">
+            <a href="references.html">References</a>
+            <a href="resources.html">Resources</a>
+          </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="nav-contact">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu"><span class="material-symbols-rounded">menu</span></button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="intro-hero">
+      <div class="section-inner">
+        <div class="intro-tag">// Start here</div>
+        <h1 class="intro-title">Anyone can use this to<br><em>learn to code.</em></h1>
+        <p class="intro-sub">This site is my C++ learning journal — built in public, written as I go. But the projects, the roadmap, and the build challenges aren't C++ exclusive. Every project here can be used as a blueprint to build the same thing in any language. The patterns transfer. The practice is what matters.</p>
+        <p class="intro-sub">Whether you're here for C++ specifically or just want a structured set of real projects to work through, this is for you.</p>
+        <div class="intro-cta">
+          <a href="roadmap.html" class="btn-primary">Start the roadmap</a>
+          <a href="projects.html" class="btn-primary">Browse projects →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panels -->
+    <section class="intro-panels">
+      <div class="section-inner">
+
+        <div class="intro-grid">
+          <div class="intro-panel">
+            <div class="intro-icon" aria-hidden="true"><span class="material-symbols-rounded">school</span></div>
+            <h2>Structured learning</h2>
+            <p>A phase-based roadmap walks you from zero to systems programming. Chapter notes, key concepts, and honest explanations written as I encounter each idea for the first time.</p>
+          </div>
+
+          <div class="intro-panel">
+            <div class="intro-icon" aria-hidden="true"><span class="material-symbols-rounded">construction</span></div>
+            <h2>Real projects</h2>
+            <p>43 projects from CLI tools to data structures to interpreters. Each one is language-agnostic at the concept level — use it as a C++ project or port it to Python, Go, Rust, whatever you're learning.</p>
+          </div>
+
+          <div class="intro-panel">
+            <div class="intro-icon" aria-hidden="true"><span class="material-symbols-rounded">sports_esports</span></div>
+            <h2>Daily practice</h2>
+            <p>C++ Wordle and a daily code challenge — one puzzle per day, same for everyone. Streaks tracked locally. A low-pressure way to keep the reps going.</p>
+          </div>
+        </div>
+
+        <div class="intro-note">
+          <div class="about-label">// How to use this</div>
+          <p><strong style="color:var(--text)">New here?</strong> Hit the <a href="roadmap.html">Roadmap</a> first — it maps out every phase with resources and projects. Then follow along with the <a href="articles.html">Articles</a>
+            <a href="games.html">Games</a> and reinforce each concept with a <a href="projects.html">Project</a>.</p>
+          <p>Not learning C++? That's fine too. The project list and the <a href="build-your-own.html">Build Your Own</a> section are designed to be used as a construction guide in any language. Pick something, build it, repeat.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Repos -->
+    <section class="intro-repos">
+      <div class="section-inner">
+        <h2 class="section-title">The two repos</h2>
+        <div class="repos-grid">
+
+          <div class="repo-card">
+            <div class="repo-card-head">
+              <span class="material-symbols-rounded">globe</span>
+              <span class="repo-label">Site</span>
+            </div>
+            <div class="repo-name">TheCppGrind</div>
+            <p class="repo-desc">This site — all the HTML, CSS, JS, articles, and data. Open source. If you want to fork the structure, build your own learning journal, or submit a fix, it's all here.</p>
+            <a class="repo-link" href="https://github.com/Cooper-Bugg/TheCppGrind" target="_blank" rel="noopener">
+              <span class="material-symbols-rounded">open_in_new</span>
+              github.com/Cooper-Bugg/TheCppGrind
+            </a>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-card-head">
+              <span class="material-symbols-rounded">folder_code</span>
+              <span class="repo-label">Projects</span>
+            </div>
+            <div class="repo-name">Start-Learning-Cpp</div>
+            <p class="repo-desc">The project repo — all 43 C++ projects, hand-typed and documented. Each one is a working implementation you can read, run, and use as a reference when building your own version in any language.</p>
+            <a class="repo-link" href="https://github.com/Cooper-Bugg/Start-Learning-Cpp" target="_blank" rel="noopener">
+              <span class="material-symbols-rounded">open_in_new</span>
+              github.com/Cooper-Bugg/Start-Learning-Cpp
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="intro-contact">
+      <div class="section-inner">
+        <h2 class="section-title">Get in touch</h2>
+        <p style="font-size:14px;color:var(--text2);line-height:1.9;max-width:560px">Questions, feedback, or just want to say you're grinding too — reach out.</p>
+        <div class="contact-card">
+          <form id="intro-contact-form" method="POST" action="https://formspree.io/f/xjgljvld">
+            <div class="contact-grid">
+              <div>
+                <label class="field-label" for="ic-name">// Name</label>
+                <input class="field-input" id="ic-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div>
+                <label class="field-label" for="ic-email">// Email</label>
+                <input class="field-input" id="ic-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="full">
+                <label class="field-label" for="ic-message">// Message</label>
+                <textarea class="field-input" id="ic-message" name="message" placeholder="Write your message…" required></textarea>
+              </div>
+              <div class="hp-field" aria-hidden="true">
+                <input id="ic-website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <input type="hidden" name="_subject" value="The C++ Grind — Message from Intro page">
+            </div>
+            <div class="form-actions">
+              <button class="btn-send" id="ic-submit" type="submit">Send</button>
+              <div class="form-status" id="ic-status" role="status" aria-live="polite"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo">The C++ Grind</span>
+      <span class="footer-note">Built while learning. Improving as I go.</span>
+      <div class="footer-links">
+        <a href="https://github.com/Cooper-Bugg/TheCppGrind" target="_blank" rel="noopener">GitHub</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+  (function () {
+    const form     = document.getElementById('intro-contact-form');
+    const statusEl = document.getElementById('ic-status');
+    const submitBtn = document.getElementById('ic-submit');
+    const honeypot = document.getElementById('ic-website');
+    if (!form) return;
+
+    function setStatus(msg, kind) {
+      statusEl.textContent = msg || '';
+      statusEl.className = 'form-status' + (kind ? ' ' + kind : '');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (honeypot && honeypot.value.trim()) { form.reset(); setStatus('Sent. Thanks!', 'ok'); return; }
+      submitBtn.setAttribute('disabled', 'true');
+      setStatus('Sending…');
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          setStatus('Sent. Thanks — I\'ll get back to you.', 'ok');
+        } else {
+          setStatus('Couldn\'t send. Try the email on the Contact page.', 'err');
+        }
+      } catch (_) {
+        setStatus('Network error. Try the Contact page.', 'err');
+      } finally {
+        submitBtn.removeAttribute('disabled');
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

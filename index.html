@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The CPP Grind</title>
+  <title>The C++ Grind</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,500,0,0" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -13,9 +15,9 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="brand-wrap">
-        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle light mode" aria-checked="false"></button>
-        <a href="index.html" class="logo">
-          <span class="logo-bracket">//</span> The CPP Grind
+        <button class="theme-toggle" type="button" role="switch" aria-label="Toggle light mode" aria-checked="false"><span class="material-symbols-rounded toggle-dark">dark_mode</span><span class="material-symbols-rounded toggle-light">light_mode</span></button>
+  <a href="pages/intro.html" class="logo">
+          <span class="logo-bracket">//</span> The C++ Grind
         </a>
       </div>
       <nav class="main-nav">
@@ -23,15 +25,16 @@
         <div class="nav-group">
           <button>Learn</button>
           <div class="dropdown-panel">
+            <a href="pages/intro.html">Intro</a>
             <a href="pages/roadmap.html">Roadmap</a>
             <a href="pages/articles.html">Articles</a>
+            <a href="pages/games.html">Games</a>
           </div>
         </div>
         <div class="nav-group">
           <button>Build</button>
           <div class="dropdown-panel">
             <a href="pages/projects.html">Projects</a>
-            <a href="pages/games.html">Games</a>
             <a href="pages/build-your-own.html">Build Your Own</a>
           </div>
         </div>
@@ -45,7 +48,7 @@
         <a href="pages/about.html">About</a>
         <a href="pages/contact.html" class="nav-contact">Contact</a>
       </nav>
-      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <button class="menu-toggle" aria-label="Toggle menu"><span class="material-symbols-rounded">menu</span></button>
     </div>
   </header>
 
@@ -59,7 +62,7 @@
         <p class="hero-sub">Structured articles, real projects, and daily challenges — everything you need to go from first compile to systems programming.</p>
         <div class="hero-cta">
           <a href="pages/roadmap.html" class="btn-primary">Start Here</a>
-          <a href="pages/games.html" class="btn-ghost">Daily Challenge →</a>
+          <a href="pages/games.html" class="btn-primary">Daily Challenge →</a>
         </div>
         <div class="hero-snippet">
           <pre><code><span class="c-comment">// your first program</span>
@@ -107,25 +110,25 @@
         <h2 class="section-title">What's here</h2>
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-icon">📖</div>
+            <div class="feature-icon" aria-hidden="true"><span class="material-symbols-rounded">menu_book</span></div>
             <h3>Articles</h3>
             <p>Chapter-by-chapter notes following Eric Roberts' <em>Programming Abstractions in C++</em>, written as I learn. Raw, honest, and improving over time.</p>
             <a href="pages/articles.html" class="feature-link">Browse articles →</a>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔨</div>
+            <div class="feature-icon" aria-hidden="true"><span class="material-symbols-rounded">construction</span></div>
             <h3>Projects</h3>
             <p>43 C++ projects from CLI tools to systems programming. Every project is hand-typed, documented, and mapped to the concepts behind it.</p>
             <a href="pages/projects.html" class="feature-link">See projects →</a>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🎮</div>
+            <div class="feature-icon" aria-hidden="true"><span class="material-symbols-rounded">sports_esports</span></div>
             <h3>Daily Games</h3>
             <p>C++ Wordle, code challenge of the day — will it compile? buffer overflow? what's the output? One puzzle, every day.</p>
             <a href="pages/games.html" class="feature-link">Play today's →</a>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🗺️</div>
+            <div class="feature-icon" aria-hidden="true"><span class="material-symbols-rounded">map</span></div>
             <h3>Roadmap</h3>
             <p>A full learning path from basics to systems programming, with every resource cited and every project mapped to the concepts it teaches.</p>
             <a href="pages/roadmap.html" class="feature-link">See the path →</a>
@@ -172,7 +175,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <span class="footer-logo">The CPP Grind</span>
+      <span class="footer-logo">The C++ Grind</span>
       <span class="footer-note">Built while learning. Improving as I go.</span>
       <div class="footer-links">
         <a href="https://github.com/Cooper-Bugg" target="_blank">GitHub</a>
